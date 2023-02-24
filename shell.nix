@@ -41,6 +41,10 @@
 
     run = "${pkgs.cargo}/bin/cargo run";
 
+    release = "${pkgs.cargo}/bin/cargo build --release";
+
+    docs = "${pkgs.cargo}/bin/cargo doc --open";
+
     test = {
       rust = {
         audit = "${cargo-with [pkgs.cargo-audit]}/bin/cargo audit";
