@@ -19,7 +19,7 @@ fn read_guess() -> String {
     print!("Please input your guess: ");
     stdout().flush().unwrap();
     stdin().read_line(&mut guess).unwrap();
-    return guess.trim().to_string();
+    guess.trim().to_string()
 }
 
 fn print_invalid_guess_help(guess: String) {
