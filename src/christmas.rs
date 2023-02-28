@@ -13,6 +13,13 @@ const DAYS: [(&str, &str); 12] = [
     ("twelfth", "twelve drummers drumming"),
 ];
 
+pub fn main() {
+    print_header();
+    for day in day_ordinals() {
+        print_day(day);
+    }
+}
+
 fn day_ordinals() -> Vec<(usize, String)> {
     DAYS.iter()
         .map(|day| day.0.to_string())
@@ -29,25 +36,30 @@ fn gifts(day_number: usize) -> Vec<(usize, String)> {
         .collect()
 }
 
-fn str_when(condition: bool, string: &str) -> String {
-    (if condition { string } else { "" }).to_string()
-}
-
-pub fn main() {
+fn print_header() {
     println!();
     println!();
     println!("\t\t The Twelve Days Of Christmas");
     println!("\t\t==============================");
-    for (day_number, day_ordinal) in day_ordinals() {
-        println!();
-        println!("On the {day_ordinal} day of Christmas my true love sent to me");
-        for (gift_number, gift) in gifts(day_number) {
-            println!(
-                "\t{}{}{}",
-                str_when(day_number > 0 && gift_number == 0, "and "),
-                gift,
-                str_when(day_number > 1 && gift_number > 0, ",")
-            );
-        }
+}
+
+fn print_day((day_number, day_ordinal): (usize, String)) {
+    println!();
+    println!("On the {day_ordinal} day of Christmas my true love sent to me");
+    for (gift_number, gift) in gifts(day_number) {
+        println!(
+            "\t{}{}{}",
+            str_when(day_number > 0 && gift_number == 0, "and "),
+            gift,
+            str_when(day_number > 1 && gift_number > 0, ",")
+        );
+    }
+}
+
+fn str_when(condition: bool, string: &str) -> &str {
+    if condition {
+        string
+    } else {
+        ""
     }
 }
