@@ -7,7 +7,7 @@ use std::{
 
 const RANGE: RangeInclusive<u32> = 1..=500;
 
-fn validate_guess(guess: &String) -> Option<u32> {
+fn parse_guess(guess: &str) -> Option<u32> {
     guess
         .parse()
         .ok()
@@ -22,7 +22,7 @@ fn read_guess() -> String {
     guess.trim().to_string()
 }
 
-fn print_invalid_guess_help(guess: String) {
+fn print_invalid_guess_help(guess: &str) {
     println!(
         "'{}' is not a valid guess, you must guess a number between {} and {}!",
         guess,
@@ -34,9 +34,9 @@ fn print_invalid_guess_help(guess: String) {
 fn get_valid_guess() -> u32 {
     loop {
         let guess = read_guess();
-        match validate_guess(&guess) {
+        match parse_guess(&guess) {
             Some(num) => return num,
-            None => print_invalid_guess_help(guess),
+            None => print_invalid_guess_help(&guess),
         };
     }
 }
