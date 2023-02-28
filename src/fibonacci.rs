@@ -13,7 +13,7 @@ pub fn main() {
     match args().nth(2).and_then(|s| s.parse::<u32>().ok()) {
         Some(n) => println!(
             "The {} Fibonacci number is {}",
-            Ordinal(n).to_string(),
+            Ordinal(n),
             fibonacci(n)
         ),
         None => println!("You must pass an index!"),

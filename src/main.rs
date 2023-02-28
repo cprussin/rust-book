@@ -16,7 +16,7 @@ fn show_help() {
 }
 
 fn main() {
-    match args().nth(1).as_ref().map(|s| s.as_str()) {
+    match args().nth(1).as_deref() {
         Some("christmas") => christmas::main(),
         Some("fibonacci") => fibonacci::main(),
         Some("guess") => guess_the_number::main(),

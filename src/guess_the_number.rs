@@ -11,7 +11,7 @@ fn parse_guess(guess: &str) -> Option<u32> {
     guess
         .parse()
         .ok()
-        .and_then(|num| RANGE.contains(&num).then(|| num))
+        .and_then(|num| RANGE.contains(&num).then_some(num))
 }
 
 fn read_guess() -> String {
