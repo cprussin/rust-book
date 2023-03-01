@@ -5,6 +5,7 @@ mod fibonacci;
 mod guess_the_number;
 mod rectangle;
 mod temperature;
+mod util;
 
 fn show_help() {
     println!("Please tell me what to run.  Options:");

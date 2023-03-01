@@ -1,3 +1,5 @@
+use crate::util::str_when;
+
 const DAYS: [(&str, &str); 12] = [
     ("first", "a partridge in a pear tree"),
     ("second", "two turtle doves"),
@@ -53,13 +55,5 @@ fn print_day((day_number, day_ordinal): (usize, String)) {
             gift,
             str_when(day_number > 1 && gift_number > 0, ",")
         );
-    }
-}
-
-fn str_when(condition: bool, string: &str) -> &str {
-    if condition {
-        string
-    } else {
-        ""
     }
 }

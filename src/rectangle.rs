@@ -1,4 +1,5 @@
 use std::{env::args, ops::Mul, fmt::{Display, Formatter, Error}};
+use crate::util::str_when;
 
 #[derive(Debug)]
 struct Rectangle<T> {
@@ -41,7 +42,10 @@ fn area() {
 
 fn can_hold() {
     match (parse_rectangle(3), parse_rectangle(5)) {
-        (Some(rectangle1), Some(rectangle2)) => println!("{rectangle2} {} fit within {rectangle1}", if rectangle1.can_hold(&rectangle2) { "can" } else { "can not" }),
+        (Some(rectangle1), Some(rectangle2)) => println!(
+            "{rectangle2} can{} fit within {rectangle1}",
+            str_when(!rectangle1.can_hold(&rectangle2), " not")
+        ),
         _ => println!("You must specify a width, a height, and another width and height!"),
     }
 }
