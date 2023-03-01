@@ -12,8 +12,8 @@ struct Rectangle<T> {
 }
 
 impl<T: Copy> Rectangle<T> {
-    fn square(size: T) -> Rectangle<T> {
-        Rectangle {
+    fn square(size: T) -> Self {
+        Self {
             width: size,
             height: size
         }
@@ -27,7 +27,7 @@ impl<T: Mul + Copy> Rectangle<T> {
 }
 
 impl<T: PartialOrd> Rectangle<T> {
-    fn can_hold(&self, other: &Rectangle<T>) -> bool {
+    fn can_hold(&self, other: &Self) -> bool {
         self.width >= other.width && self.height >= other.height
     }
 }
