@@ -11,6 +11,15 @@ struct Rectangle<T> {
     height: T,
 }
 
+impl<T: Copy> Rectangle<T> {
+    fn square(size: T) -> Rectangle<T> {
+        Rectangle {
+            width: size,
+            height: size
+        }
+    }
+}
+
 impl<T: Mul + Copy> Rectangle<T> {
     fn area(&self) -> <T as Mul>::Output {
         self.width * self.height
@@ -37,7 +46,8 @@ pub fn main() {
     match args().nth(2).as_deref() {
         Some("area") => area(),
         Some("can_hold") => can_hold(),
-        _ => println!("You must select an operation.  Options: area|can_hold"),
+        Some("square") => square(),
+        _ => println!("You must select an operation.  Options: area|can_hold|square"),
     }
 }
 
@@ -55,6 +65,13 @@ fn can_hold() {
             str_when(!rectangle1.can_hold(&rectangle2), " not")
         ),
         _ => println!("You must specify a width, a height, and another width and height!"),
+    }
+}
+
+fn square() {
+    match args().nth(3).and_then(|s| s.parse::<f64>().ok()) {
+        Some(n) => println!("{}", Rectangle::square(n)),
+        None => println!("You must provide a size for the square")
     }
 }
 
