@@ -15,7 +15,7 @@ impl<T: Copy> Rectangle<T> {
     fn square(size: T) -> Self {
         Self {
             width: size,
-            height: size
+            height: size,
         }
     }
 }
@@ -71,7 +71,7 @@ fn can_hold() {
 fn square() {
     match args().nth(3).and_then(|s| s.parse::<f64>().ok()) {
         Some(n) => println!("{}", Rectangle::square(n)),
-        None => println!("You must provide a size for the square")
+        None => println!("You must provide a size for the square"),
     }
 }
 
