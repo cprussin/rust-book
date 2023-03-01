@@ -1,32 +1,61 @@
-use std::{env::args, ops::Mul};
+use std::{env::args, ops::Mul, fmt::{Display, Formatter, Error}};
 
+#[derive(Debug)]
 struct Rectangle<T> {
     width: T,
     height: T,
 }
 
-impl<T: Mul> Rectangle<T> {
-    fn area(self) -> <T as Mul>::Output {
+impl<T: Mul + Copy> Rectangle<T> {
+    fn area(&self) -> <T as Mul>::Output {
         self.width * self.height
     }
 }
 
-fn parse_rectangle() -> Option<Rectangle<f64>> {
+impl<T: PartialOrd> Rectangle<T> {
+    fn can_hold(&self, other: &Rectangle<T>) -> bool {
+        self.width >= other.width && self.height >= other.height
+    }
+}
+
+impl<T: Display> Display for Rectangle<T> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
+        write!(f, "a rectangle of width {} and height {}", self.width, self.height)
+    }
+}
+
+pub fn main() {
+    match args().nth(2).as_deref() {
+        Some("area") => area(),
+        Some("can_hold") => can_hold(),
+        _ => println!("You must select an operation.  Options: area|can_hold")
+    }
+}
+
+fn area() {
+    match parse_rectangle(3) {
+        Some(rectangle) => println!("The area of {rectangle} is {}", rectangle.area()),
+        None => println!("You must specify a width and a height!"),
+    }
+}
+
+fn can_hold() {
+    match (parse_rectangle(3), parse_rectangle(5)) {
+        (Some(rectangle1), Some(rectangle2)) => println!("{rectangle2} {} fit within {rectangle1}", if rectangle1.can_hold(&rectangle2) { "can" } else { "can not" }),
+        _ => println!("You must specify a width, a height, and another width and height!"),
+    }
+}
+
+fn parse_rectangle(skip: usize) -> Option<Rectangle<f64>> {
     args()
-        .skip(2)
+        .skip(skip)
         .take(2)
         .map(|elem| elem.parse().ok())
         .into_iter()
         .collect::<Option<Vec<_>>>()
+        .filter(|vec| vec.len() == 2)
         .map(|opts| Rectangle {
             width: opts[0],
             height: opts[1],
         })
-}
-
-pub fn main() {
-    match parse_rectangle() {
-        Some(rectangle) => println!("The area is {}", rectangle.area()),
-        None => println!("You must specify a width and a height!"),
-    }
 }
