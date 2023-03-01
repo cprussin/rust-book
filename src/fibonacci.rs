@@ -11,11 +11,7 @@ fn fibonacci(index: u32) -> u64 {
 
 pub fn main() {
     match args().nth(2).and_then(|s| s.parse::<u32>().ok()) {
-        Some(n) => println!(
-            "The {} Fibonacci number is {}",
-            Ordinal(n),
-            fibonacci(n)
-        ),
+        Some(n) => println!("The {} Fibonacci number is {}", Ordinal(n), fibonacci(n)),
         None => println!("You must pass an index!"),
     }
 }

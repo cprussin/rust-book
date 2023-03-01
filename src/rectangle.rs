@@ -1,5 +1,9 @@
-use std::{env::args, ops::Mul, fmt::{Display, Formatter, Error}};
 use crate::util::str_when;
+use std::{
+    env::args,
+    fmt::{Display, Error, Formatter},
+    ops::Mul,
+};
 
 #[derive(Debug)]
 struct Rectangle<T> {
@@ -21,7 +25,11 @@ impl<T: PartialOrd> Rectangle<T> {
 
 impl<T: Display> Display for Rectangle<T> {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
-        write!(f, "a rectangle of width {} and height {}", self.width, self.height)
+        write!(
+            f,
+            "a rectangle of width {} and height {}",
+            self.width, self.height
+        )
     }
 }
 
@@ -29,7 +37,7 @@ pub fn main() {
     match args().nth(2).as_deref() {
         Some("area") => area(),
         Some("can_hold") => can_hold(),
-        _ => println!("You must select an operation.  Options: area|can_hold")
+        _ => println!("You must select an operation.  Options: area|can_hold"),
     }
 }
 
