@@ -21,12 +21,12 @@ impl<T: Copy> Rectangle<T> {
 
 impl<T: FromStr + Copy> Rectangle<T> {
     pub fn parse<I: IntoIterator<Item = String>>(iterable: I) -> Option<Self> {
-        let mut iter = iterable.into_iter();
+        let mut iter = iterable.into_iter().map(|e| e.parse().ok());
 
-        Some(Self {
-            width: iter.next()?.parse().ok()?,
-            height: iter.next()?.parse().ok()?,
-        })
+        iter.next()
+            .flatten()
+            .zip(iter.next().flatten())
+            .map(|(width, height)| Self { width, height })
     }
 }
 
