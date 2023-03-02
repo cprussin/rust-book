@@ -64,7 +64,7 @@
     fix = {
       rust = {
         format = "${cargo-with [pkgs.rustfmt]}/bin/cargo fmt";
-        lint = "${cargo-with [pkgs.clippy]}/bin/cargo clippy --fix";
+        lint = "${cargo-with [pkgs.clippy]}/bin/cargo clippy --fix --allow-staged";
       };
       nix = {
         dead-code = "${pkgs.deadnix}/bin/deadnix -e .";
