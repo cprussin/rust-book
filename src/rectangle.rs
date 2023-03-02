@@ -26,7 +26,7 @@ impl<T: FromStr + Copy> Rectangle<T> {
             .map(|elem| elem.parse().ok())
             .collect::<Option<Vec<_>>>()
             .filter(|vec| vec.len() == 2)
-            .map(|opts| Rectangle {
+            .map(|opts| Self {
                 width: opts[0],
                 height: opts[1],
             })
