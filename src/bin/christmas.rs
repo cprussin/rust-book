@@ -1,4 +1,4 @@
-use crate::util::str_when;
+use rust_book::string_utils::str_when;
 
 const DAYS: [(&str, &str); 12] = [
     ("first", "a partridge in a pear tree"),
