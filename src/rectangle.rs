@@ -20,16 +20,13 @@ impl<T: Copy> Rectangle<T> {
 }
 
 impl<T: FromStr + Copy> Rectangle<T> {
-    pub fn parse<I: IntoIterator<Item = String>>(iter: I) -> Option<Self> {
-        iter.into_iter()
-            .take(2)
-            .map(|elem| elem.parse().ok())
-            .collect::<Option<Vec<_>>>()
-            .filter(|vec| vec.len() == 2)
-            .map(|opts| Self {
-                width: opts[0],
-                height: opts[1],
-            })
+    pub fn parse<I: IntoIterator<Item = String>>(iterable: I) -> Option<Self> {
+        let mut iter = iterable.into_iter();
+
+        Some(Self {
+            width: iter.next()?.parse().ok()?,
+            height: iter.next()?.parse().ok()?,
+        })
     }
 }
 
