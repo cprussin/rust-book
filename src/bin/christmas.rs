@@ -1,4 +1,4 @@
-use rust_book::string_utils::str_when;
+use rust_book::string_utils;
 
 const DAYS: [(&str, &str); 12] = [
     ("first", "a partridge in a pear tree"),
@@ -51,9 +51,9 @@ fn print_day((day_number, day_ordinal): (usize, String)) {
     for (gift_number, gift) in gifts(day_number) {
         println!(
             "\t{}{}{}",
-            str_when(day_number > 0 && gift_number == 0, "and "),
+            string_utils::str_when(day_number > 0 && gift_number == 0, "and "),
             gift,
-            str_when(day_number > 1 && gift_number > 0, ",")
+            string_utils::str_when(day_number > 1 && gift_number > 0, ",")
         );
     }
 }

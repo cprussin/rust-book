@@ -1,8 +1,8 @@
 use rust_book::temperature::Temperature;
-use std::env::args;
+use std::env;
 
 pub fn main() {
-    match args()
+    match env::args()
         .nth(1)
         .and_then(|s| s.parse::<f64>().ok())
         .map(Temperature::Fahrenheit)

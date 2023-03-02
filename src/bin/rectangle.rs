@@ -1,8 +1,8 @@
-use rust_book::{rectangle::Rectangle, string_utils::str_when};
-use std::env::args;
+use rust_book::{rectangle::Rectangle, string_utils};
+use std::env;
 
 pub fn main() {
-    match args().nth(1).as_deref() {
+    match env::args().nth(1).as_deref() {
         Some("area") => area(),
         Some("can_hold") => can_hold(),
         Some("square") => square(),
@@ -11,7 +11,7 @@ pub fn main() {
 }
 
 fn area() {
-    match Rectangle::<f64>::parse(args().skip(2)) {
+    match Rectangle::<f64>::parse(env::args().skip(2)) {
         Some(rectangle) => println!("The area of {rectangle} is {}", rectangle.area()),
         None => println!("You must specify a width and a height!"),
     }
@@ -19,19 +19,19 @@ fn area() {
 
 fn can_hold() {
     match (
-        Rectangle::<f64>::parse(args().skip(2)),
-        Rectangle::<f64>::parse(args().skip(4)),
+        Rectangle::<f64>::parse(env::args().skip(2)),
+        Rectangle::<f64>::parse(env::args().skip(4)),
     ) {
         (Some(rectangle1), Some(rectangle2)) => println!(
             "{rectangle2} can{} fit within {rectangle1}",
-            str_when(!rectangle1.can_hold(&rectangle2), " not")
+            string_utils::str_when(!rectangle1.can_hold(&rectangle2), " not")
         ),
         _ => println!("You must specify a width, a height, and another width and height!"),
     }
 }
 
 fn square() {
-    match args()
+    match env::args()
         .nth(2)
         .and_then(|s| s.parse::<f64>().ok())
         .map(Rectangle::square)

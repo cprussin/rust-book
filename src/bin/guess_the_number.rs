@@ -1,7 +1,7 @@
-use rand::{thread_rng, Rng};
+use rand::Rng;
 use std::{
-    cmp::Ordering::{Equal, Greater, Less},
-    io::{stdin, stdout, Write},
+    cmp::Ordering,
+    io::{self, Write},
     ops::RangeInclusive,
 };
 
@@ -17,8 +17,8 @@ fn parse_guess(guess: &str) -> Option<u32> {
 fn read_guess() -> String {
     let mut guess = String::new();
     print!("Please input your guess: ");
-    stdout().flush().unwrap();
-    stdin().read_line(&mut guess).unwrap();
+    io::stdout().flush().unwrap();
+    io::stdin().read_line(&mut guess).unwrap();
     guess.trim().to_string()
 }
 
@@ -44,13 +44,13 @@ fn get_valid_guess() -> u32 {
 pub fn main() {
     println!("Guess the number!");
 
-    let secret_number = thread_rng().gen_range(RANGE);
+    let secret_number = rand::thread_rng().gen_range(RANGE);
 
     loop {
         match get_valid_guess().cmp(&secret_number) {
-            Less => println!("Too small!"),
-            Greater => println!("Too big!"),
-            Equal => {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
                 println!("You win!");
                 break;
             }
