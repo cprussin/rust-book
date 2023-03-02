@@ -3,6 +3,7 @@ use std::{
     env::args,
     fmt::{Display, Error, Formatter},
     ops::Mul,
+    str::FromStr,
 };
 
 #[derive(Debug)]
@@ -17,6 +18,20 @@ impl<T: Copy> Rectangle<T> {
             width: size,
             height: size,
         }
+    }
+}
+
+impl<T: FromStr + Copy> Rectangle<T> {
+    fn parse<I: IntoIterator<Item = String>>(iter: I) -> Option<Self> {
+        iter.into_iter()
+            .take(2)
+            .map(|elem| elem.parse().ok())
+            .collect::<Option<Vec<_>>>()
+            .filter(|vec| vec.len() == 2)
+            .map(|opts| Rectangle {
+                width: opts[0],
+                height: opts[1],
+            })
     }
 }
 
@@ -52,14 +67,17 @@ pub fn main() {
 }
 
 fn area() {
-    match parse_rectangle(3) {
+    match Rectangle::<f64>::parse(args().skip(3)) {
         Some(rectangle) => println!("The area of {rectangle} is {}", rectangle.area()),
         None => println!("You must specify a width and a height!"),
     }
 }
 
 fn can_hold() {
-    match (parse_rectangle(3), parse_rectangle(5)) {
+    match (
+        Rectangle::<f64>::parse(args().skip(3)),
+        Rectangle::<f64>::parse(args().skip(5)),
+    ) {
         (Some(rectangle1), Some(rectangle2)) => println!(
             "{rectangle2} can{} fit within {rectangle1}",
             str_when(!rectangle1.can_hold(&rectangle2), " not")
@@ -69,22 +87,12 @@ fn can_hold() {
 }
 
 fn square() {
-    match args().nth(3).and_then(|s| s.parse::<f64>().ok()) {
-        Some(n) => println!("{}", Rectangle::square(n)),
+    match args()
+        .nth(3)
+        .and_then(|s| s.parse::<f64>().ok())
+        .map(Rectangle::square)
+    {
+        Some(rectangle) => println!("{rectangle}"),
         None => println!("You must provide a size for the square"),
     }
-}
-
-fn parse_rectangle(skip: usize) -> Option<Rectangle<f64>> {
-    args()
-        .skip(skip)
-        .take(2)
-        .map(|elem| elem.parse().ok())
-        .into_iter()
-        .collect::<Option<Vec<_>>>()
-        .filter(|vec| vec.len() == 2)
-        .map(|opts| Rectangle {
-            width: opts[0],
-            height: opts[1],
-        })
 }
