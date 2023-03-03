@@ -14,5 +14,5 @@ pub fn main() {
     let cli = Cli::parse();
     let f = Temperature::Fahrenheit(cli.fahrenheit);
 
-    println!("{f} is {}", Temperature::to_celsius(&f));
+    println!("{f} is {}", f.to_celsius());
 }
