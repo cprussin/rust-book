@@ -20,7 +20,7 @@ const DAYS: [(&str, &str); 12] = [
     ("twelfth", "twelve drummers drumming"),
 ];
 
-pub fn main() {
+fn main() {
     Cli::parse();
 
     print_header();

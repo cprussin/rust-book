@@ -37,7 +37,7 @@ enum Commands {
     },
 }
 
-pub fn main() {
+fn main() {
     let cli = Cli::parse();
 
     match &cli.command {

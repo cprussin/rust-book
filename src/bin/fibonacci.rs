@@ -11,7 +11,7 @@ struct Cli {
     index: u32,
 }
 
-pub fn main() {
+fn main() {
     let cli = Cli::parse();
 
     println!(

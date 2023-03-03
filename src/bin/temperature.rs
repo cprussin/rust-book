@@ -10,7 +10,7 @@ struct Cli {
     fahrenheit: f64,
 }
 
-pub fn main() {
+fn main() {
     let cli = Cli::parse();
     let f = Temperature::Fahrenheit(cli.fahrenheit);
 
