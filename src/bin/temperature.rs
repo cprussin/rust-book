@@ -1,13 +1,18 @@
+use clap::Parser;
 use rust_book::temperature::Temperature;
-use std::env;
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+#[clap(arg_required_else_help(true))]
+struct Cli {
+    /// The temperature in degrees Fahrenheit
+    #[arg(required = true)]
+    fahrenheit: f64,
+}
 
 pub fn main() {
-    match env::args()
-        .nth(1)
-        .and_then(|s| s.parse::<f64>().ok())
-        .map(Temperature::Fahrenheit)
-    {
-        Some(f) => println!("{f} is {}", Temperature::to_celsius(&f)),
-        None => println!("You must pass a temperature in Fahrenheit!"),
-    }
+    let cli = Cli::parse();
+    let f = Temperature::Fahrenheit(cli.fahrenheit);
+
+    println!("{f} is {}", Temperature::to_celsius(&f));
 }

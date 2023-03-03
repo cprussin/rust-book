@@ -1,4 +1,9 @@
+use clap::Parser;
 use rust_book::string_utils;
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Cli {}
 
 const DAYS: [(&str, &str); 12] = [
     ("first", "a partridge in a pear tree"),
@@ -16,6 +21,8 @@ const DAYS: [(&str, &str); 12] = [
 ];
 
 pub fn main() {
+    Cli::parse();
+
     print_header();
     for day in day_ordinals() {
         print_day(day);

@@ -1,9 +1,14 @@
+use clap::Parser;
 use rand::Rng;
 use std::{
     cmp::Ordering,
     io::{self, Write},
     ops::RangeInclusive,
 };
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Cli {}
 
 const RANGE: RangeInclusive<u32> = 1..=500;
 
@@ -42,6 +47,8 @@ fn get_valid_guess() -> u32 {
 }
 
 pub fn main() {
+    Cli::parse();
+
     println!("Guess the number!");
 
     let secret_number = rand::thread_rng().gen_range(RANGE);

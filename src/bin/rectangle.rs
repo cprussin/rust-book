@@ -1,51 +1,77 @@
+use clap::{Parser, Subcommand};
 use rust_book::{rectangle::Rectangle, string_utils};
-use std::env;
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Calculates the area of a rectangle
+    Area {
+        /// The width of the rectangle
+        width: f64,
+        /// The height of the rectangle
+        height: f64,
+    },
+
+    /// Tells you whether rect2 can fit inside rect1
+    CanHold {
+        /// The width of the first rectangle
+        rect1_width: f64,
+        /// The height of the first rectangle
+        rect1_height: f64,
+        /// The width of the second rectangle
+        rect2_width: f64,
+        /// The height of the second rectangle
+        rect2_height: f64,
+    },
+
+    /// Calculate and display a square of a given size
+    Square {
+        /// The size of one side of the square
+        size: f64,
+    },
+}
 
 pub fn main() {
-    match env::args().nth(1).as_deref() {
-        Some("area") => area(),
-        Some("can_hold") => can_hold(),
-        Some("square") => square(),
-        _ => help(),
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Area { width, height } => area(*width, *height),
+        Commands::CanHold {
+            rect1_width,
+            rect1_height,
+            rect2_width,
+            rect2_height,
+        } => can_hold(*rect1_width, *rect1_height, *rect2_width, *rect2_height),
+        Commands::Square { size } => square(*size),
     }
 }
 
-fn area() {
-    match Rectangle::<f64>::parse(env::args().skip(2)) {
-        Some(rectangle) => println!("The area of {rectangle} is {}", rectangle.area()),
-        None => println!("You must specify a width and a height!"),
-    }
+fn area(width: f64, height: f64) {
+    let rectangle = Rectangle { width, height };
+    println!("The area of {rectangle} is {}", rectangle.area());
 }
 
-fn can_hold() {
-    match (
-        Rectangle::<f64>::parse(env::args().skip(2)),
-        Rectangle::<f64>::parse(env::args().skip(4)),
-    ) {
-        (Some(rectangle1), Some(rectangle2)) => println!(
-            "{rectangle2} can{} fit within {rectangle1}",
-            string_utils::str_when(!rectangle1.can_hold(&rectangle2), " not")
-        ),
-        _ => println!("You must specify a width, a height, and another width and height!"),
-    }
+fn can_hold(rect1_width: f64, rect1_height: f64, rect2_width: f64, rect2_height: f64) {
+    let rectangle1 = Rectangle {
+        width: rect1_width,
+        height: rect1_height,
+    };
+    let rectangle2 = Rectangle {
+        width: rect2_width,
+        height: rect2_height,
+    };
+    println!(
+        "{rectangle2} can{} fit within {rectangle1}",
+        string_utils::str_when(!rectangle1.can_hold(&rectangle2), " not")
+    )
 }
 
-fn square() {
-    match env::args()
-        .nth(2)
-        .and_then(|s| s.parse::<f64>().ok())
-        .map(Rectangle::square)
-    {
-        Some(rectangle) => println!("{rectangle}"),
-        None => println!("You must provide a size for the square"),
-    }
-}
-
-fn help() {
-    println!("\
-        You must select an operation.  Options:\n\
-        \t- area <width> <height>: calculate the area of a rectangle given the width and height\n\
-        \t- can_hold <width1> <height1> <width2> <height2>: determine if the second rectangle can fit in the first\n\
-        \t- square <size>: construct and print a square with the given size\
-    ");
+fn square(size: f64) {
+    println!("{}", Rectangle::<f64>::square(size))
 }

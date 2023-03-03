@@ -1,13 +1,12 @@
 use std::{
     fmt::{Display, Error, Formatter},
     ops::Mul,
-    str::FromStr,
 };
 
 #[derive(Debug)]
 pub struct Rectangle<T> {
-    width: T,
-    height: T,
+    pub width: T,
+    pub height: T,
 }
 
 impl<T: Copy> Rectangle<T> {
@@ -16,17 +15,6 @@ impl<T: Copy> Rectangle<T> {
             width: size,
             height: size,
         }
-    }
-}
-
-impl<T: FromStr + Copy> Rectangle<T> {
-    pub fn parse<I: IntoIterator<Item = String>>(iterable: I) -> Option<Self> {
-        let mut iter = iterable.into_iter().map(|e| e.parse().ok());
-
-        iter.next()
-            .flatten()
-            .zip(iter.next().flatten())
-            .map(|(width, height)| Self { width, height })
     }
 }
 
