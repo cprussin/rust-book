@@ -24,7 +24,7 @@ fn main() {
     Cli::parse();
 
     print_header();
-    for day in day_ordinals() {
+    for day in &day_ordinals() {
         print_day(day);
     }
 }
@@ -36,7 +36,7 @@ fn day_ordinals() -> Vec<(usize, String)> {
         .collect()
 }
 
-fn gifts(day_number: usize) -> Vec<(usize, String)> {
+fn gifts(day_number: &usize) -> Vec<(usize, String)> {
     DAYS[0..day_number + 1]
         .iter()
         .map(|day| day.1.to_string())
@@ -52,15 +52,15 @@ fn print_header() {
     println!("\t\t==============================");
 }
 
-fn print_day((day_number, day_ordinal): (usize, String)) {
+fn print_day((day_number, day_ordinal): &(usize, String)) {
     println!();
     println!("On the {day_ordinal} day of Christmas my true love sent to me");
-    for (gift_number, gift) in gifts(day_number) {
+    for (gift_number, gift) in &gifts(day_number) {
         println!(
             "\t{}{}{}",
-            string_utils::str_when(day_number > 0 && gift_number == 0, "and "),
+            string_utils::str_when(*day_number > 0 && *gift_number == 0, "and "),
             gift,
-            string_utils::str_when(day_number > 1 && gift_number > 0, ",")
+            string_utils::str_when(*day_number > 1 && *gift_number > 0, ",")
         );
     }
 }
