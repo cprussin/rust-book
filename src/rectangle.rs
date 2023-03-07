@@ -39,3 +39,17 @@ impl<T: Display> Display for Rectangle<T> {
         )
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_calculates_area() {
+        let rectangle = Rectangle {
+            width: 5,
+            height: 10,
+        };
+        assert_eq!(rectangle.area(), 50);
+    }
+}
