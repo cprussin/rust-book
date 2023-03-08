@@ -4,8 +4,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["Connor Prussin <connor@prussin.net>"]
 description = "Rust learning examples"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
 
 [dependencies]
 clap = { version = "4.1.8", features = ["derive"] }
