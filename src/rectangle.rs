@@ -1,3 +1,7 @@
+//! # Rectangle!
+//!
+//! You know, like squares and stuff
+
 use std::{
     fmt::{Display, Error, Formatter},
     ops::Mul,
@@ -19,6 +23,14 @@ impl<T: Copy> Rectangle<T> {
 }
 
 impl<T: Mul + Copy> Rectangle<T> {
+    /// Calculates the area of the rectangle.
+    ///
+    /// Examples:
+    ///
+    /// ```
+    /// let rectangle = rust_book::rectangle::Rectangle { width: 50, height: 10 };
+    /// assert_eq!(rectangle.area(), 500);
+    /// ```
     pub fn area(&self) -> <T as Mul>::Output {
         self.width * self.height
     }

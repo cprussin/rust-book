@@ -1,3 +1,7 @@
+//! # Rust Book
+//!
+//! Just some stuff
+
 pub mod company;
 pub mod grep;
 pub mod number_utils;
