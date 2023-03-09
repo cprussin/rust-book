@@ -1,5 +1,5 @@
 use clap::Parser;
-use rust_book::string_utils;
+use string_utils;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -20,7 +20,7 @@ const DAYS: [(&str, &str); 12] = [
     ("twelfth", "twelve drummers drumming"),
 ];
 
-fn main() {
+pub fn main() {
     Cli::parse();
 
     print_header();

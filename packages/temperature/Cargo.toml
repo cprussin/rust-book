@@ -1,0 +1,10 @@
+[package]
+name = "temperature"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Calculations on temperatures"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }

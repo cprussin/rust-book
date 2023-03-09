@@ -1,4 +1,4 @@
-use rust_book::rectangle::Rectangle;
+use rectangle::Rectangle;
 
 #[test]
 fn it_calculates_area() {

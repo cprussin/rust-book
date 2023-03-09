@@ -9,7 +9,7 @@ struct Cli {}
 
 const RANGE: RangeInclusive<u32> = 1..=500;
 
-fn main() {
+pub fn main() {
     Cli::parse();
 
     println!("Guess the number!");

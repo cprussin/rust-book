@@ -1,0 +1,11 @@
+[package]
+name = "number_utils"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Random number utilities"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+ordinal = "0.3.2"

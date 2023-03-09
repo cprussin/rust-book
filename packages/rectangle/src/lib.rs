@@ -7,6 +7,8 @@ use std::{
     ops::Mul,
 };
 
+pub mod cli;
+
 #[derive(Debug)]
 pub struct Rectangle<T> {
     pub width: T,
@@ -28,7 +30,7 @@ impl<T: Mul + Copy> Rectangle<T> {
     /// Examples:
     ///
     /// ```
-    /// let rectangle = rust_book::rectangle::Rectangle { width: 50, height: 10 };
+    /// let rectangle = rectangle::Rectangle { width: 50, height: 10 };
     /// assert_eq!(rectangle.area(), 500);
     /// ```
     pub fn area(&self) -> <T as Mul>::Output {

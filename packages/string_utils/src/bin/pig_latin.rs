@@ -1,5 +1,4 @@
 use clap::Parser;
-use rust_book::string_utils;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]

@@ -1,5 +1,7 @@
 use std::collections::{BTreeMap, BTreeSet};
 
+pub mod cli;
+
 type Department = String;
 type Name = String;
 

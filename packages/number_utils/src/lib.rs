@@ -1,5 +1,16 @@
+//! # Number Utils
+//!
+//! Random utilities for working with numbers
+
 use std::collections::BTreeMap;
 
+/// Return the nth fibonacci number.
+///
+/// Examples:
+///
+/// ```
+/// assert_eq!(number_utils::fibonacci(7), 13);
+/// ```
 pub fn fibonacci(index: u32) -> u64 {
     let mut seq = [0, 1];
     for _ in 0..index {

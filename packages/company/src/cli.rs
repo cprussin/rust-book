@@ -1,6 +1,6 @@
+use crate::Company;
 use clap::Parser;
 use inquire::CustomType;
-use rust_book::company::Company;
 use std::{
     fmt::{Display, Error, Formatter},
     str::FromStr,
@@ -58,7 +58,7 @@ impl Display for Command {
     }
 }
 
-fn main() {
+pub fn main() {
     Cli::parse();
 
     let mut company = Company::new("Big Company Inc., Incorporated");
@@ -66,7 +66,7 @@ fn main() {
     println!("Welcome to {}!", company.name);
 
     loop {
-        match CustomType::<Command>::new("> ")
+        match CustomType::<Command>::new("")
             .with_help_message(HELP_MESSAGE)
             .prompt()
         {

@@ -36,6 +36,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "christmas"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "string_utils",
+]
+
+[[package]]
 name = "clap"
 version = "4.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -70,6 +78,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "350b9cf31731f9957399229e9b2adc51eeabdfbe9d71d9a0552275fd12710d09"
 dependencies = [
  "os_str_bytes",
+]
+
+[[package]]
+name = "company"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "inquire",
 ]
 
 [[package]]
@@ -133,6 +149,24 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
+]
+
+[[package]]
+name = "grep"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "regex",
+ "string_utils",
+]
+
+[[package]]
+name = "guess_the_number"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "inquire",
+ "rand",
 ]
 
 [[package]]
@@ -269,6 +303,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "number_utils"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "ordinal",
+]
+
+[[package]]
 name = "once_cell"
 version = "1.17.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -391,6 +433,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "rectangle"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "string_utils",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -419,13 +469,6 @@ checksum = "456c603be3e8d448b072f410900c09faf164fbce2d480456f50eea6e25f9c848"
 [[package]]
 name = "rust-book"
 version = "0.1.0"
-dependencies = [
- "clap",
- "inquire",
- "ordinal",
- "rand",
- "regex",
-]
 
 [[package]]
 name = "rustix"
@@ -484,6 +527,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a507befe795404456341dfab10cef66ead4c041f62b8b11bbb92bffe5d0953e0"
 
 [[package]]
+name = "string_utils"
+version = "0.1.0"
+dependencies = [
+ "clap",
+]
+
+[[package]]
 name = "strsim"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -498,6 +548,13 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "temperature"
+version = "0.1.0"
+dependencies = [
+ "clap",
 ]
 
 [[package]]

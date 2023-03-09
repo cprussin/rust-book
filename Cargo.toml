@@ -1,14 +1,2 @@
-[package]
-name = "rust-book"
-version = "0.1.0"
-edition = "2021"
-authors = ["Connor Prussin <connor@prussin.net>"]
-description = "Rust learning examples"
-license = "MIT"
-
-[dependencies]
-clap = { version = "4.1.8", features = ["derive"] }
-inquire = "0.5.3"
-ordinal = "0.3.2"
-rand = "0.8.5"
-regex = "1.7.1"
+[workspace]
+members = ["packages/*"]

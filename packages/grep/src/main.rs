@@ -1,4 +1,4 @@
-use rust_book::grep::cli;
+use grep::cli;
 use std::process::ExitCode;
 
 fn main() -> ExitCode {

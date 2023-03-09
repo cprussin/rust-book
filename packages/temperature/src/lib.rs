@@ -1,5 +1,7 @@
 use std::fmt::{Display, Error, Formatter};
 
+pub mod cli;
+
 #[derive(Debug, PartialEq)]
 pub enum Temperature {
     Fahrenheit(f64),

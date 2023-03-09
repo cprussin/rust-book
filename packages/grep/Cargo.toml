@@ -1,0 +1,12 @@
+[package]
+name = "grep"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Grep clone"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+regex = "1.7.1"
+string_utils = { path = "../string_utils" }

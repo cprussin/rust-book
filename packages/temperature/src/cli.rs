@@ -1,5 +1,5 @@
+use crate::Temperature;
 use clap::Parser;
-use rust_book::temperature::Temperature;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -10,7 +10,7 @@ struct Cli {
     fahrenheit: f64,
 }
 
-fn main() {
+pub fn main() {
     let cli = Cli::parse();
     let f = Temperature::Fahrenheit(cli.fahrenheit);
 

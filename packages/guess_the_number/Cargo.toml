@@ -1,0 +1,12 @@
+[package]
+name = "guess_the_number"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Guess the number!"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+inquire = "0.5.3"
+rand = "0.8.5"

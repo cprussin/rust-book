@@ -1,5 +1,6 @@
+use crate::Rectangle;
 use clap::{Parser, Subcommand};
-use rust_book::{rectangle::Rectangle, string_utils};
+use string_utils;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -37,7 +38,7 @@ enum Commands {
     },
 }
 
-fn main() {
+pub fn main() {
     let cli = Cli::parse();
 
     match &cli.command {

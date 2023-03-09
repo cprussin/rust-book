@@ -1,0 +1,11 @@
+[package]
+name = "company"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Manage a bustling company"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+inquire = "0.5.3"

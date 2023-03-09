@@ -1,0 +1,11 @@
+[package]
+name = "christmas"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "Sing a christmas carol"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+string_utils = { path = "../string_utils" }

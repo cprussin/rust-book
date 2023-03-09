@@ -1,6 +1,5 @@
 use clap::Parser;
 use ordinal::Ordinal;
-use rust_book::number_utils;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
