@@ -1,0 +1,10 @@
+[package]
+name = "web_server"
+version = "0.1.0"
+edition = "2021"
+authors = ["Connor Prussin <connor@prussin.net>"]
+description = "A simple web server"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
