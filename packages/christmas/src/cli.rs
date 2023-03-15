@@ -3,7 +3,7 @@ use string_utils;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
-struct Cli {}
+struct Cli;
 
 const DAYS: [(&str, &str); 12] = [
     ("first", "a partridge in a pear tree"),

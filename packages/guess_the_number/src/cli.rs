@@ -5,7 +5,7 @@ use std::{cmp::Ordering, ops::RangeInclusive};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
-struct Cli {}
+struct Cli;
 
 const RANGE: RangeInclusive<u32> = 1..=500;
 
